@@ -11,8 +11,8 @@ window.addEventListener("load", function() {
 //play
 document.querySelector("#play").addEventListener("click", function () {
 	console.log("Play Video");
-	document.querySelector("#volume").innerHTML = video.volume * 100 + "%";
 	video.play();
+	document.querySelector("#volume").textContent = video.volume * 100 + "%";
   });
 //pause
 document.querySelector("#pause").addEventListener("click", function () {
@@ -29,11 +29,11 @@ document.querySelector("#slower").addEventListener("click", function () {
 document.querySelector("#faster").addEventListener("click", function () {
 	console.log("Speed Up Video");
 	video.playbackRate += 0.1;
-	console.log("The video speed is " + video.playbackRate);
+	console.log("The video speed is: " + video.playbackRate);
   });
 //skip ahead
 document.querySelector("#skip").addEventListener("click", function () {
-	console.log("Skip Ahead Video");
+	console.log("Skip Ahead");
 	if (video.currentTime + 10 > video.duration) {
 		video.currentTime = 0;
 	} else {
@@ -44,20 +44,21 @@ document.querySelector("#skip").addEventListener("click", function () {
 //mute
 document.querySelector("#mute").addEventListener("click", function () {
 	console.log("Mute Video");
-	if (video.muted == true) {
+	if (video.muted) {
 	  video.muted = false;
-	  document.querySelector("#mute").innerHTML = "Mute";
+	  document.querySelector("#mute").textContent = "Mute";
 	} else {
 	  video.muted = true;
-	  document.querySelector("#mute").innerHTML = "Unmute";
+	  document.querySelector("#mute").textContent = "Unmute";
 	}
   });
 //volume slider
 document.querySelector("#slider").addEventListener("input", function () {
-	console.log("Slider");
-	video.volume = document.querySelector('#slider').value * 0.01;
-	document.querySelector("#volume").innerHTML = video.volume *100 + "%";
-	console.log("The current video volume is: " + video.volume+ "%");
+	let volSlider = document.querySelector('#slider').value;
+	console.log(volSlider);
+	video.volume = volSlider * 0.01;
+	document.querySelector("#volume").textContent = volSlider + "%";
+	// console.log("The current video volume is: " + video.volume+ "%");
   });
 
 //styled
